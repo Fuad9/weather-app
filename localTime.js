@@ -1,8 +1,30 @@
 window.addEventListener("load", () => {
-    function displayTime() {
-        var d = new Date();
-        var n = d.toLocaleTimeString();
-        document.getElementById("time").textContent = n;
-    }
-    displayTime();
+    const proxy = "https://cors-anywhere.herokuapp.com/";
+    const api = `${proxy}https://api.openweathermap.org/data/2.5/weather?q=Dhaka,bd&APPID=c0a13cdeb3f7cac0507317486f399f72`;
+
+    fetch(api)
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            const { sunrise, sunset } = data.sys;
+            document.querySelector(".sunriseTime").textContent = displayT(sunrise);
+            document.querySelector(".sunsetTime").textContent = displayT(sunset);
+        });
+
+    let displayT = (sunT) => {
+        let date = new Date(sunT * 1000);
+        let time = date.toLocaleTimeString();
+        return time;
+    };
 });
+
+setInterval(() => {
+    var t = new Date().getTime();
+    var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((t % (1000 * 60)) / 1000);
+    var result = hours + "h " + minutes + "m " + seconds + "s ";
+    document.querySelector(".time2").textContent = result;
+}, 1000);

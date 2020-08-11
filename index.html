@@ -11,8 +11,12 @@
 
 <body>
     <div class="location">
-        <h1 class="location-timezon">Timezone</h1>
-        <h2 id="time">time</h2>
+        <h3>Timezone : <span class="location-timezon"></span></h3>
+        <h3>Time : <span id="time"></span></h3>
+        <h3>Sunrise : <span class="sunriseTime"></span></h3>
+        <h3>Sunset : <span class="sunsetTime"></span></h3>
+        <h3>UTC : <span class="time2"></span></h3>
+        <br />
         <canvas class="icon" width="128" height="128"></canvas>
     </div>
     <div class="temperature">
@@ -22,12 +26,13 @@
         </div>
         <div class="temperature-description">It's frigging cold</div>
         <br />
-        <h2 class="pressure">Pressure</h2>
+        <h3>Pressure : <span class="pressure">000</span></h3>
+        <br />
     </div>
 
-    <script src="localTime.js"></script>
     <script src="skycons.js"></script>
     <script src="app.js"></script>
+    <script src="localTime.js"></script>
 </body>
 
 </html>

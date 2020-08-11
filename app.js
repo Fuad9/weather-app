@@ -6,6 +6,7 @@ window.addEventListener("load", () => {
     );
     let temperatureDegree = document.querySelector(".temperature-degree");
     let locationTimezone = document.querySelector(".location-timezon");
+    let localTime = document.querySelector("#time");
     let showPressure = document.querySelector(".pressure");
 
     if (navigator.geolocation) {
@@ -15,7 +16,6 @@ window.addEventListener("load", () => {
 
             const proxy = "https://cors-anywhere.herokuapp.com/";
             const api = `${proxy}https://api.darksky.net/forecast/fd9d9c6418c23d94745b836767721ad1/${lat},${long}`;
-            // const api = `${proxy}https://api.openweathermap.org/data/2.5/weather?id=524901&appid=d638e17301e29457cec0c56e35e15dce`;
 
             fetch(api)
                 .then((response) => {
@@ -24,14 +24,17 @@ window.addEventListener("load", () => {
                 .then((data) => {
                     console.log(data);
                     const { time, temperature, summary, pressure, icon } = data.currently;
+
                     // Set DOM elements from the API
                     temperatureDegree.textContent = (
                         (temperature - 32) *
                         (5 / 9)
                     ).toFixed(2);
                     temperatureDescription.textContent = summary;
-                    locationTimezone.textContent = time;
+                    locationTimezone.textContent = data.timezone;
+                    localTime.textContent = displayTimeZone(time);
                     showPressure.textContent = pressure;
+
                     //Set Icon
                     setIcons(icon, document.querySelector(".icon"));
                 });
@@ -43,5 +46,21 @@ window.addEventListener("load", () => {
         const currentIcon = icon.replace(/-/g, "_").toUpperCase();
         skycons.play();
         return skycons.set(iconID, Skycons[currentIcon]);
+    }
+
+    // Showing local time
+    function displayTimeZone(timestamp) {
+        // Multiply by 1000 because JS works in milliseconds instead of the UNIX seconds
+        var date = new Date(timestamp * 1000);
+
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1; // getMonth() is zero-indexed, so we'll increment to get the correct month number
+        var day = date.getDate();
+        var t = date.toLocaleTimeString();
+
+        month = month < 10 ? "0" + month : month;
+        day = day < 10 ? "0" + day : day;
+
+        return month + "-" + day + "-" + year + " " + t;
     }
 });
