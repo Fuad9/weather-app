@@ -18,7 +18,7 @@ body {
     height: 30vh;
     width: 50%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -26,7 +26,8 @@ body {
     flex-direction: column;
 }
 
-.degree-section {
+.degree-section,
+.temp-degree-section {
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -37,6 +38,13 @@ body {
     font-size: 30px;
 }
 
-.degree-section h2 {
+
+/* .degree-section h2 {
     font-size: 40px;
+} */
+
+.time-section img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
 }
