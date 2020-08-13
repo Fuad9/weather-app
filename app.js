@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
         ".temperature-description"
     );
     let temperatureDegree = document.querySelector(".temperature-degree");
-    let locationTimezone = document.querySelector(".location-timezon");
+    let locationTimezone = document.querySelector(".location-timezone");
     let localTime = document.querySelector("#time");
     let showPressure = document.querySelector(".pressure");
 
@@ -33,7 +33,7 @@ window.addEventListener("load", () => {
                     temperatureDescription.textContent = summary;
                     locationTimezone.textContent = data.timezone;
                     localTime.textContent = displayTimeZone(time);
-                    showPressure.textContent = pressure;
+                    showPressure.textContent = (pressure / 101.325).toFixed(2);
 
                     //Set Icon
                     setIcons(icon, document.querySelector(".icon"));

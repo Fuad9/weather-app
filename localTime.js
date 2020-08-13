@@ -9,8 +9,10 @@ window.addEventListener("load", () => {
         .then((data) => {
             console.log(data);
             const { sunrise, sunset } = data.sys;
+            const { temp } = data.main;
             document.querySelector(".sunriseTime").textContent = displayT(sunrise);
             document.querySelector(".sunsetTime").textContent = displayT(sunset);
+            document.querySelector(".temp-degree").textContent = temp - 273.15;
         });
 
     let displayT = (sunT) => {
@@ -25,6 +27,11 @@ setInterval(() => {
     var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((t % (1000 * 60)) / 1000);
-    var result = hours + "h " + minutes + "m " + seconds + "s ";
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    var result = hours + ": " + minutes + ": " + seconds;
     document.querySelector(".time2").textContent = result;
 }, 1000);
