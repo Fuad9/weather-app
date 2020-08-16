@@ -6,39 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <title>weather app</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <div class="location">
-        <h3>Timezone : <span class="location-timezone">timezone</span></h3>
-        <canvas class="icon" width="128" height="128"></canvas>
-    </div>
-    <div class="time-section">
-        <h3>Time : <span id="time">time</span></h3>
-        <h3>Sunrise : <span class="sunriseTime">sunrise</span></h3>
-        <img src="https://source.unsplash.com/1600x900/?sunrise" />
-        <h3>Sunset : <span class="sunsetTime">sunset</span></h3>
-        <img src="https://source.unsplash.com/1600x900/?sunset" />
-        <h3>UTC : <span class="time2">utc</span></h3>
-    </div>
-    <div class="temperature">
-        <div class="degree-section">
-            <h2>
-                Temperature from darkskynet :
-                <span class="temperature-degree">34</span> °C
-            </h2>
+    <section class="weather">
+        <div class="darkSkyNet">
+            <h2 style="color: blue;">Weather status from DarkSkynet</h2>
+            <div class="location">
+                <h3>Timezone : <span class="location-timezone">timezone</span></h3>
+                <canvas class="icon" width="128" height="128"></canvas>
+            </div>
+            <div class="time-section">
+                <h3>Local Time : <span id="time">time</span></h3>
+                <br />
+                <h3>UTC : <span class="time2">utc</span></h3>
+            </div>
+            <div class="temperature">
+                <div class="degree-section">
+                    <h2>
+                        Temperature :
+                        <span class="temperature-degree">34</span> °C
+                    </h2>
+                </div>
+                <h3 class="temperature-description">It's frigging cold</h3>
+                <br />
+                <h3>Pressure : <span class="pressure">000</span> Pa</h3>
+            </div>
         </div>
-        <div class="temperature-description">It's frigging cold</div>
-        <br />
-        <h3>Pressure : <span class="pressure">000</span> Pa</h3>
-        <br />
-    </div>
-    <div class="temp-degree-section">
-        <h2>
-            Temperature from openweathermap : <span class="temp-degree">34</span> °C
-        </h2>
-    </div>
+
+        <div class="openWetherMap">
+            <h2 style="color: blue;">Weather Status from OpenWeatherMap</h2>
+            <div class="col-md-6 m-auto py-5">
+                <div class="input-group mb-3">
+                    <input autocomplete="off" type="text" class="form-control" id="city" placeholder="Enter a location for Weather ..." />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-danger">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="weather-status text-white text-center">
+                <img id="icon-type" src="" alt="" />
+                <h3>City: <span id="city-name">Dhaka</span></h3>
+                <h3>Temperature: <span id="degree">38.06</span>&deg;C</h3>
+                <h3>Description: <span id="lead">Clouds</span></h3>
+                <h3>Sunrise : <span class="sunriseTime">sunrise</span></h3>
+                <img src="https://source.unsplash.com/1600x900/?sunrise" />
+                <h3>Sunset : <span class="sunsetTime">sunset</span></h3>
+                <img src="https://source.unsplash.com/1600x900/?sunset" />
+            </div>
+        </div>
+    </section>
 
     <script src="skycons.js"></script>
     <script src="app.js"></script>
