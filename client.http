@@ -1,0 +1,1 @@
+GET https://api.openweathermap.org/data/2.5/weather?q=Dhaka,bd&APPID=c0a13cdeb3f7cac0507317486f399f72
